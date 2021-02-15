@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import React, {useState, useEffect} from "react";
 import fire from './fire';
 import Login from './Login';
+import Hero from './Hero';
 import './App.css';
 
 function App() {
@@ -66,7 +67,10 @@ function App() {
 
   return (
     <div className="App">
-      <Login 
+      {user ? (
+         <Hero handleLogout={handleLogout}/>
+      ) : (
+        <Login 
         email={email}
         setEmail={setEmail}
         password={password}
@@ -79,6 +83,9 @@ function App() {
         passwordError={passwordError}
 
       />
+      )}
+      
+      <Hero handleLogout={handleLogout}/>
     </div>
   );
 }
