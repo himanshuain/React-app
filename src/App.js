@@ -17,7 +17,7 @@ function App() {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch(err => {
-        switch(err,code){
+        switch(err.code){
           case "auth/invalid-email":
           case "auth/user-disabled":
           case "auth/user-not-found":
@@ -35,7 +35,7 @@ function App() {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(err => {
-        switch(err,code){
+        switch(err.code){
           case "auth/email-already-in-use":
           case "auth/ivalid-email":
             setEmailError(err.message);
@@ -66,7 +66,19 @@ function App() {
 
   return (
     <div className="App">
-      <Login />
+      <Login 
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        handleLogin={handleLogin}
+        handleSignup={handleSignup}
+        hasAccount={hasAccount}
+        setHasAccount={setHasAccount}
+        emailError={emailError}
+        passwordError={passwordError}
+
+      />
     </div>
   );
 }
